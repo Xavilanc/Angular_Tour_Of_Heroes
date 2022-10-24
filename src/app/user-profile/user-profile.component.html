@@ -1,5 +1,6 @@
 <img [src]="user.photo" [alt]="user.name" />
 <div>
+    <div>{{user.quote}}</div>
     <input type="text" [(ngModel)]="user.quote">
     <div class="age-box">
         <p class="age" >AGE : <span [hidden]="user.hide">{{user.age}}</span></p><button type="text" (click)="showAge()">Afficher / Masquer</button>
