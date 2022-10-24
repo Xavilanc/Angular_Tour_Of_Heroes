@@ -1,0 +1,32 @@
+div {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    width: 30vw;
+}
+
+.age {
+    font-size: 1vw;
+}
+
+.name {
+    font-weight: bold;
+    font-size: 1.5vw;
+}
+
+.firstname {
+    font-size: 1vw;;
+}
+
+button {
+    width: 10%;
+    margin-left: 3%;
+}
+
+.age-box {
+    display: flex;
+    flex-direction: row;
+    margin-top: 3%;
+}
