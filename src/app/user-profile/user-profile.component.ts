@@ -16,7 +16,8 @@ export class UserProfileComponent implements OnInit {
     hide: true
   };
 
-  constructor() {}
+  constructor() {
+}
 
 
   
