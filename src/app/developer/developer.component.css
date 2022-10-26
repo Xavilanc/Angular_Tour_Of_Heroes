@@ -1,0 +1,30 @@
+img {
+    width: 5%;
+}
+
+p {
+    font-weight: bold;
+}
+
+span {
+    font-weight: lighter;
+}
+
+.skills {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: bisque;
+    width: 50%;
+    padding: 2%;
+    border-radius: 15px;
+    margin: 1%;
+}
+
+div {
+    margin-bottom: 5%;
+    background-color:lightblue;
+    padding: 2%;
+    border-radius: 15px;
+    width: 50%;
+}
