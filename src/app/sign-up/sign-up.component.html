@@ -39,7 +39,7 @@
         <input id="password" name="password" type="password" [(ngModel)]="model.password" #password="ngModel" required />
       </fieldset>
     
-      <!-- Message d'erreurs de lastname -->
+      <!-- Message d'erreurs de password -->
       <div *ngIf="password.errors">
         <span *ngIf="password.errors?.['required']">Le mot de passe est requis</span>
       </div>
