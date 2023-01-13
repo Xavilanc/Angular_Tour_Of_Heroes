@@ -3,6 +3,7 @@ import { UserProfileComponent } from "./user-profile/user-profile.component";
 import { SignUpComponent } from "./sign-up/sign-up.component";
 import { DeveloperComponent } from "./developer/developer.component";
 import { OnomatopiaComponent } from "./onomatopia/onomatopia.component";
+import { FilmListComponent } from "./film-list/film-list.component";
 
 
 const ROUTES: Routes = [
@@ -10,7 +11,8 @@ const ROUTES: Routes = [
     { path: "user", component: UserProfileComponent},
     { path: "developer", component: DeveloperComponent},
     { path: "onomatopia", component: OnomatopiaComponent},
-    { path: "", component: UserProfileComponent}
+    { path: "", component: UserProfileComponent},
+    { path: "films", component: FilmListComponent}
 ]
 
 export { ROUTES };

@@ -12,6 +12,9 @@ import { DeveloperComponent } from './developer/developer.component';
 import { SkillComponent } from './skill/skill.component';
 import { OnomatopiaComponent } from './onomatopia/onomatopia.component';
 import { OnomatopiaFormComponent } from './onomatopia-form/onomatopia-form.component';
+import { HighlightDirective } from './highlight.directive';
+import { FilmListComponent } from './film-list/film-list.component';
+import { ShowMovieDirective } from './show-movie.directive';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { OnomatopiaFormComponent } from './onomatopia-form/onomatopia-form.compo
     DeveloperComponent,
     SkillComponent,
     OnomatopiaComponent,
-    OnomatopiaFormComponent
+    OnomatopiaFormComponent,
+    HighlightDirective,
+    FilmListComponent,
+    ShowMovieDirective
   ],
   imports: [
     BrowserModule,

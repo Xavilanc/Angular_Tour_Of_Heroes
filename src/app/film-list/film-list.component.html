@@ -1,0 +1,9 @@
+<button (click)="setShowMovies(showMovies)"> {{showMovies ? "Cacher les films" : "Voir les films"}}</button>
+<div *appShowMovie="showMovies">
+    <ul *ngFor="let f of films">
+        <li appHighlight>
+            <img src={{f.imageUrl}} alt={{f.title}} />
+            <p>{{f.title}}</p>
+        </li>
+    </ul>
+</div>
