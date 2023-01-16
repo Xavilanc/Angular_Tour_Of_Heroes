@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
@@ -15,6 +16,8 @@ import { OnomatopiaFormComponent } from './onomatopia-form/onomatopia-form.compo
 import { HighlightDirective } from './highlight.directive';
 import { FilmListComponent } from './film-list/film-list.component';
 import { ShowMovieDirective } from './show-movie.directive';
+import { SignUpReactiveComponent } from './sign-up-reactive/sign-up-reactive.component';
+import { SearchMovieComponent } from './search-movie/search-movie.component';
 
 @NgModule({
   declarations: [
@@ -28,11 +31,14 @@ import { ShowMovieDirective } from './show-movie.directive';
     OnomatopiaFormComponent,
     HighlightDirective,
     FilmListComponent,
-    ShowMovieDirective
+    ShowMovieDirective,
+    SignUpReactiveComponent,
+    SearchMovieComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(ROUTES)
   ],
   providers: [],

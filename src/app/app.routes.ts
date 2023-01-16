@@ -1,13 +1,17 @@
 import { Routes } from "@angular/router";
 import { UserProfileComponent } from "./user-profile/user-profile.component";
 import { SignUpComponent } from "./sign-up/sign-up.component";
+import { SignUpReactiveComponent } from "./sign-up-reactive/sign-up-reactive.component";
 import { DeveloperComponent } from "./developer/developer.component";
 import { OnomatopiaComponent } from "./onomatopia/onomatopia.component";
 import { FilmListComponent } from "./film-list/film-list.component";
+import { SearchMovieComponent } from "./search-movie/search-movie.component";
 
 
 const ROUTES: Routes = [
-    { path: "signup", component: SignUpComponent},
+    { path: "signup", component: SignUpReactiveComponent},
+    { path: "signup-reactive", component: SignUpComponent},
+    { path: "search-movie", component: SearchMovieComponent},
     { path: "user", component: UserProfileComponent},
     { path: "developer", component: DeveloperComponent},
     { path: "onomatopia", component: OnomatopiaComponent},

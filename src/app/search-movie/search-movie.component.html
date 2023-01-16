@@ -1,0 +1,88 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="searchMovieForm">
+  <div>
+    Form submitted ? {{ submitted }} 
+    Form valid ? {{ searchMovieForm.valid }} 
+    Form invalid ? {{ searchMovieForm.invalid }}
+  </div>
+
+  <!------------------------------------------------------------------------------>
+  <!-------------------------------NAME (formGroup imbriqué)---------------------->
+  <!------------------------------------------------------------------------------>
+  <form [formGroup]="getName()">
+    <!-- id -->
+    <fieldset>
+      <label for="id">Identifiant</label>
+      <input id="id" name="id" type="text" formControlName="id" />
+    </fieldset>
+
+    <!-- Message d'erreurs de id -->
+    <div *ngIf="searchMovieForm.get('name')!.get('id')!.errors">
+      <span *ngIf="searchMovieForm.get('name')!.get('id')!.errors!['isRequired']">
+        Le titre ou l'identifiant est requis
+      </span>
+    </div>
+
+    <!-- Titre- -->
+    <fieldset>
+      <label for="title">Titre</label>
+      <input
+        id="title"
+        name="title"
+        type="text"
+        formControlName="title"
+      />
+    </fieldset>
+
+    <!-- Message d'erreurs de title -->
+    <div *ngIf="searchMovieForm.get('name')!.get('title')!.errors">
+      <span *ngIf="searchMovieForm.get('name')!.get('title')!.errors!['isRequired']">
+        Le titre ou l'identifiant est requis
+      </span>
+    </div>
+  </form>
+
+  <!------------------------------------------------------------------------------>
+  <!-------------------------------TYPE------------------------------------------->
+  <!------------------------------------------------------------------------------>
+  <fieldset>
+    <label for="type">Type</label>
+    <select id="type" name="type" formControlName="type">
+        <option value="serie">Série</option>
+        <option value="film">Film</option>
+        <option value="episode">Épisode</option>
+    </select>
+  </fieldset>
+
+  <!------------------------------------------------------------------------------>
+  <!-----------------------------ANNÉE DE SORTIE---------------------------------->
+  <!------------------------------------------------------------------------------>
+  <fieldset>
+    <label for="year">Année de sortie</label>
+    <input id="year" name="year" type="number" formControlName="year" required />
+  </fieldset>
+
+  <!-- Message d'erreurs de year -->
+  <div *ngIf="searchMovieForm.controls['year'].errors">
+    <span *ngIf="searchMovieForm.controls['year'].errors['min']">
+        l'année de sortie incorrecte
+    </span>
+  </div>
+
+  <!------------------------------------------------------------------------------>
+  <!----------------------------------FICHE--------------------------------------->
+  <!------------------------------------------------------------------------------>
+  <fieldset>
+    <label for="fiche">Fiche</label>
+    <select id="fiche" name="fiche" formControlName="fiche">
+        <option value="courte">Courte</option>
+        <option value="complete">Complète</option>
+    </select>
+  </fieldset>
+
+
+
+  <div>
+    <button type="reset">Restaurer</button>
+    <button type="submit">Sauvegarder</button>
+  </div>
+</form>
