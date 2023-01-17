@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors } from '@angular/forms';
 
 import { isRequiredValidator } from '../validators/isRequiredValidator';
 
@@ -12,11 +12,13 @@ import { isRequiredValidator } from '../validators/isRequiredValidator';
 export class SearchMovieComponent implements OnInit {
 
   
+  id: FormControl = new FormControl ('', isRequiredValidator(this.getTitle()));
+  title: FormControl = new FormControl ('', isRequiredValidator(this.getId()));
 
   readonly searchMovieForm = this.fb.group({
     name: this.fb.group({
-      id: ['', isRequiredValidator(this.getId(), this.getTitle())],
-      title: ['', isRequiredValidator(this.getId(), this.getTitle())],
+      id: this.id,
+      title: this.title
     }),
     type: [''],
     year: [1950, (control: AbstractControl): ValidationErrors | null => {
@@ -25,19 +27,32 @@ export class SearchMovieComponent implements OnInit {
     fiche: ['']
   }) 
 
+  
   submitted = false;
+  defaultValue = '';
 
-  idChanges!: number;
+  idChanges!: string;
 
   constructor(private readonly fb: FormBuilder, private readonly cd: ChangeDetectorRef) {
     
    }
 
   ngOnInit(): void {
+    console.log('title initial = ' + this.getTitle());
     console.log('id initial = ' + this.searchMovieForm.controls['name'].controls['id'].value?.length);
     this.cd.detectChanges();
 
-    this.onChanges();
+    this.getName().controls['id'].valueChanges.subscribe((value: string) => {
+      this.getName().updateValueAndValidity()
+      this.title.updateValueAndValidity()
+    })
+
+    this.getName().controls['title'].valueChanges.subscribe((value: string) => {
+      this.getName().updateValueAndValidity()
+      this.id.updateValueAndValidity()
+    })
+
+    // this.onChanges();
     
   }
 
@@ -56,23 +71,23 @@ export class SearchMovieComponent implements OnInit {
       console.log('id onsubmit = ' + this.searchMovieForm.controls['name'].controls['id'].value?.length);  
   }
 
-  onChanges(): void {
-    this.searchMovieForm.get('id')?.valueChanges.subscribe( val => {
-      this.idChanges = val
-    })
-    console.log('changes = ' + this.idChanges)
-  }
+  // onChanges(): void {
+  //   this.searchMovieForm.get('id')?.valueChanges.subscribe( val => {
+  //     this.idChanges = val
+  //   })
+  //   console.log('changes = ' + this.idChanges)
+  // }
 
   getName(): FormGroup {
     return this.searchMovieForm.controls['name'] as FormGroup;
   }
 
   getId(): number {
-    return this.searchMovieForm?.controls['name'].controls['id'].value?.length as number;
+    return this.id?.value?.length as number;
   }
 
   getTitle(): number {
-    return this.searchMovieForm?.controls['name'].controls['title'].value?.length as number;
+    return this.title?.value?.length as number;
   }
 
   getYear(): number {

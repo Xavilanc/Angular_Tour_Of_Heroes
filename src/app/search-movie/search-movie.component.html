@@ -16,8 +16,8 @@
     </fieldset>
 
     <!-- Message d'erreurs de id -->
-    <div *ngIf="searchMovieForm.get('name')!.get('id')!.errors">
-      <span *ngIf="searchMovieForm.get('name')!.get('id')!.errors!['isRequired']">
+    <div *ngIf="id.errors">
+      <span *ngIf="id.errors!['isRequired']">
         Le titre ou l'identifiant est requis
       </span>
     </div>
@@ -34,8 +34,8 @@
     </fieldset>
 
     <!-- Message d'erreurs de title -->
-    <div *ngIf="searchMovieForm.get('name')!.get('title')!.errors">
-      <span *ngIf="searchMovieForm.get('name')!.get('title')!.errors!['isRequired']">
+    <div *ngIf="title.errors">
+      <span *ngIf="title.errors!['isRequired']">
         Le titre ou l'identifiant est requis
       </span>
     </div>
