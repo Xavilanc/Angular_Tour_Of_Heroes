@@ -1,8 +1,7 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors } from '@angular/forms';
+import { ChangeDetectorRef, Component, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors } from '@angular/forms';
 
 import { isRequiredValidator } from '../validators/isRequiredValidator';
-import { rangeDateValidator } from '../validators/rangeDateValidator';
 
 
 @Component({
@@ -28,33 +27,52 @@ export class SearchMovieComponent implements OnInit {
 
   submitted = false;
 
+  idChanges!: number;
+
   constructor(private readonly fb: FormBuilder, private readonly cd: ChangeDetectorRef) {
     
    }
 
   ngOnInit(): void {
-    console.log(typeof this.searchMovieForm.controls['year'].value );
-    this.cd.detectChanges();  
+    console.log('id initial = ' + this.searchMovieForm.controls['name'].controls['id'].value?.length);
+    this.cd.detectChanges();
+
+    this.onChanges();
+    
   }
+
+  // ngOnChanges(changes: SimpleChanges): void {
+  //   const newValue: SimpleChange = changes['searchMovieForm.name.id'];
+  //   console.log('newValue = ' + newValue.currentValue)
+  // }
 
   onSubmit() {
       this.searchMovieForm.patchValue({
+        type: 'série',
         fiche: 'courte'
       })
       this.submitted = true;
-      console.log('search-movie Form submitted', this.searchMovieForm.value);  
+      console.log('search-movie Form submitted', this.searchMovieForm.value);
+      console.log('id onsubmit = ' + this.searchMovieForm.controls['name'].controls['id'].value?.length);  
+  }
+
+  onChanges(): void {
+    this.searchMovieForm.get('id')?.valueChanges.subscribe( val => {
+      this.idChanges = val
+    })
+    console.log('changes = ' + this.idChanges)
   }
 
   getName(): FormGroup {
     return this.searchMovieForm.controls['name'] as FormGroup;
   }
 
-  getId(): FormControl {
-    return this.searchMovieForm?.controls['name'].controls['id'] as FormControl;
+  getId(): number {
+    return this.searchMovieForm?.controls['name'].controls['id'].value?.length as number;
   }
 
-  getTitle(): FormControl {
-    return this.searchMovieForm?.controls['name'].controls['title'] as FormControl;
+  getTitle(): number {
+    return this.searchMovieForm?.controls['name'].controls['title'].value?.length as number;
   }
 
   getYear(): number {
