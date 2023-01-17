@@ -58,12 +58,12 @@
   <!------------------------------------------------------------------------------>
   <fieldset>
     <label for="year">Année de sortie</label>
-    <input id="year" name="year" type="number" formControlName="year" required />
+    <input id="year" name="year" type="number" formControlName="year" />
   </fieldset>
 
   <!-- Message d'erreurs de year -->
   <div *ngIf="searchMovieForm.controls['year'].errors">
-    <span *ngIf="searchMovieForm.controls['year'].errors['min']">
+    <span *ngIf="searchMovieForm.controls['year'].errors['date']">
         l'année de sortie incorrecte
     </span>
   </div>

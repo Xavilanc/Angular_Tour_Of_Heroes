@@ -1,8 +1,9 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors } from '@angular/forms';
 
 import { isRequiredValidator } from '../validators/isRequiredValidator';
 import { rangeDateValidator } from '../validators/rangeDateValidator';
+
 
 @Component({
   selector: 'app-search-movie',
@@ -11,22 +12,28 @@ import { rangeDateValidator } from '../validators/rangeDateValidator';
 })
 export class SearchMovieComponent implements OnInit {
 
+  
+
   readonly searchMovieForm = this.fb.group({
     name: this.fb.group({
       id: ['', isRequiredValidator(this.getId(), this.getTitle())],
       title: ['', isRequiredValidator(this.getId(), this.getTitle())],
     }),
     type: [''],
-    year: [1951, rangeDateValidator(1950, 2022)],
+    year: [1950, (control: AbstractControl): ValidationErrors | null => {
+      return control.value > 1950 && control.value <= 2023 ? null : { 'date': { value: control.value}}
+    }  ],
     fiche: ['']
   }) 
 
   submitted = false;
 
   constructor(private readonly fb: FormBuilder, private readonly cd: ChangeDetectorRef) {
+    
    }
 
   ngOnInit(): void {
+    console.log(typeof this.searchMovieForm.controls['year'].value );
     this.cd.detectChanges();  
   }
 
@@ -48,6 +55,10 @@ export class SearchMovieComponent implements OnInit {
 
   getTitle(): FormControl {
     return this.searchMovieForm?.controls['name'].controls['title'] as FormControl;
+  }
+
+  getYear(): number {
+    return this.searchMovieForm?.controls['year'].value as number;
   }
 
 
