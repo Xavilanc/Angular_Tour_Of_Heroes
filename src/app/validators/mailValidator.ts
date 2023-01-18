@@ -1,13 +1,9 @@
 import { AbstractControl, ValidationErrors } from "@angular/forms";
 
 export function mailValidator(control: AbstractControl): ValidationErrors | null {
-    const mailRegex = RegExp('^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$');
+    const mailRegex: RegExp = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'gm');
     const valid = mailRegex.test(control.value);
+    console.log(valid);
 
-    const errors = {
-        mail: {
-            rules: 'adresse mail non valide'
-        }
-    };
-    return !valid ? errors : null;
+    return valid ? null : { 'invalidMail': { value: control.value}};
 }

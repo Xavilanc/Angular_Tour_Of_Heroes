@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NewUser } from '../models/newUser';
+import { mailValidator } from '../validators/mailValidator';
 
 @Component({
   selector: 'app-create-user',
@@ -10,25 +11,50 @@ import { NewUser } from '../models/newUser';
 export class CreateUserComponent implements OnInit {
 
   newUser?: NewUser;
+  submitted = false;
 
   userForm = this.formBuilder.group({
-    username: [''],
+    username: ['', Validators.required],
     credentials: this.formBuilder.group({
-      mail: [''],
-      password: ['']
+      mail: ['', [Validators.required, mailValidator]],
+      password: ['', Validators.required],
     }),
     adress: this.formBuilder.group({
-      street: [''],
-      postcode: [0],
-      city: ['']
+      street: ['', Validators.required],
+      postcode: [null, Validators.minLength(5)],
+      city: ['', Validators.required],
     })
 
   })
 
-
   constructor(private readonly formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+  }
+
+  //Getters
+  get username(): FormControl {
+    return this.userForm.controls['username'] as FormControl;
+  }
+
+  get mail(): FormControl {
+    return this.credentials.controls['mail'] as FormControl;
+  }
+
+  get password(): FormControl {
+    return this.credentials.controls['password'] as FormControl;
+  }
+
+  get street(): FormControl {
+    return this.adress.controls['street'] as FormControl;
+  }
+
+  get postcode(): FormControl {
+    return this.adress.controls['postcode'] as FormControl;
+  }
+
+  get city(): FormControl {
+    return this.adress.controls['city'] as FormControl;
   }
 
   get credentials(): FormGroup {
@@ -51,7 +77,9 @@ export class CreateUserComponent implements OnInit {
         postcode: this.adress.get('postcode')?.value!,
         city: this.adress.get('city')?.value!
       }
-    };
+    }
+    this.submitted = true;
+    
     console.log("création d'un nouvel utilisateur");
     console.log(this.newUser);
   }

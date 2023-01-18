@@ -6,6 +6,9 @@
             <label for="username">Pseudonyme</label>
             <input id="username" name="username" type="text" formControlName="username" />
         </fieldset>
+        <div *ngIf="username.errors && username.touched">
+            <span [hidden]="!username.errors['required']"> Le pseudonyme est nécéssaire</span>
+        </div>
 
         <!-- Credentials -->
         <form [formGroup]="credentials">
@@ -14,14 +17,21 @@
             <!-- Mail -->
             <fieldset>
                 <label for="mail">Email</label>
-                <input id="mail" name="mail" type="text" formControlName="mail" />
+                <input id="mail" name="mail" type="text" formControlName="mail" placeholder="ex: user@mail.com" />
             </fieldset>
+            <div *ngIf="mail.errors && mail.touched">
+                <span [hidden]="!mail.errors['required']"> Le mail est nécéssaire</span><br />
+                <span [hidden]="!mail.errors['invalidMail']"> Adresse mail non valide</span>
+            </div>
 
             <!-- Password -->
             <fieldset>
                 <label for="password">Mot de passe</label>
                 <input id="password" name="password" type="text" formControlName="password" />
             </fieldset>
+            <div *ngIf="password.errors && password.touched">
+                <span [hidden]="!password.errors['required']"> Le mot de passe est nécéssaire</span>
+            </div>
 
         </form>
         
@@ -34,24 +44,35 @@
                 <label for="street">Rue ou avenue</label>
                 <input id="street" name="street" type="text" formControlName="street" />
             </fieldset>
+            <div *ngIf="street.errors && street.touched">
+                <span [hidden]="!street.errors['required']"> La rue est nécéssaire</span>
+            </div>
 
             <!-- Postcode -->
             <fieldset>
                 <label for="postcode">Code postal</label>
-                <input id="postcode" name="postcode" type="number" formControlName="postcode" />
+                <input id="postcode" name="postcode" type="number" formControlName="postcode" placeholder="ex: 10000" />
             </fieldset>
+            <div *ngIf="postcode.errors">
+                <span [hidden]="!postcode.errors['minLength']"> Le code postal doit contenir 5 chiffres</span>
+
+            </div>
 
             <!-- city -->
             <fieldset>
                 <label for="city">Ville</label>
                 <input id="city" name="city" type="text" formControlName="city" />
             </fieldset>
+            <div *ngIf="city.errors && city.touched">
+                <span [hidden]="!city.errors['required']"> La ville est nécéssaire</span>
+            </div>
 
         </form>
 
         <div>
+            <p *ngIf="userForm.invalid">Veuillez remplir tous les champs</p>
             <button type="reset">Recommencer</button>
-            <button type="submit">Sauvegarder</button>
+            <button type="submit" [disabled]="userForm.invalid">Sauvegarder</button>
         </div>
 
     </form>
