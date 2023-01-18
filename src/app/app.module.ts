@@ -18,6 +18,7 @@ import { FilmListComponent } from './film-list/film-list.component';
 import { ShowMovieDirective } from './show-movie.directive';
 import { SignUpReactiveComponent } from './sign-up-reactive/sign-up-reactive.component';
 import { SearchMovieComponent } from './search-movie/search-movie.component';
+import { CreateUserComponent } from './create-user/create-user.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { SearchMovieComponent } from './search-movie/search-movie.component';
     FilmListComponent,
     ShowMovieDirective,
     SignUpReactiveComponent,
-    SearchMovieComponent
+    SearchMovieComponent,
+    CreateUserComponent
   ],
   imports: [
     BrowserModule,

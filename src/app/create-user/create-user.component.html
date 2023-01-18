@@ -1,0 +1,64 @@
+<div>
+    <h2>Création de compte</h2>
+    <form (ngSubmit)="onSubmit()">
+        <!-- Username -->
+        <fieldset>
+            <label for="username">Pseudonyme</label>
+            <input id="username" name="username" type="text" [formControl]="username" />
+        </fieldset>
+
+        <!-- Mail -->
+        <fieldset>
+            <label for="mail">Email</label>
+            <input id="mail" name="mail" type="text" [formControl]="mail" />
+        </fieldset>
+
+        <!-- Password -->
+        <fieldset>
+            <label for="password">Mot de passe</label>
+            <input id="password" name="password" type="text" [formControl]="password" />
+        </fieldset>
+
+        <!-- Adress -->
+        <form [formGroup]="adress">
+            <p>Adresse</p>
+
+            <!-- Street -->
+            <fieldset>
+                <label for="street">Rue ou avenue</label>
+                <input id="street" name="street" type="text" formControlName="street" />
+            </fieldset>
+
+            <!-- Postcode -->
+            <fieldset>
+                <label for="postcode">Code postal</label>
+                <input id="postcode" name="postcode" type="number" formControlName="postcode" />
+            </fieldset>
+
+            <!-- city -->
+            <fieldset>
+                <label for="city">Ville</label>
+                <input id="city" name="city" type="text" formControlName="city" />
+            </fieldset>
+
+        </form>
+
+        <div>
+            <button type="reset">Recommencer</button>
+            <button type="submit">Sauvegarder</button>
+        </div>
+
+    </form>
+
+    <div *ngIf="newUser">
+        <p> Nouvel Utilisateur</p><br />
+        <p> Pseudonyme: {{newUser.username}}</p>
+        <p> Mail: {{newUser.mail}}</p>
+        <p> Mot de passe: {{newUser.password}}</p>
+        <p>(juste pour la quête dans la vrai vie on n'affiche pas cette donnée)</p>
+        <p>Adresse</p>
+        <p> Rue / Avenue/ Boulevard: {{newUser.adress.street}}</p>
+        <p> Code Postal: {{newUser.adress.postcode}}</p>
+        <p> Ville: {{newUser.adress.city}}</p>        
+    </div>
+</div>
