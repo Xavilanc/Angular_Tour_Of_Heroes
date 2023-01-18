@@ -1,24 +1,30 @@
 <div>
     <h2>Création de compte</h2>
-    <form (ngSubmit)="onSubmit()">
+    <form (ngSubmit)="onSubmit()" [formGroup]="userForm">
         <!-- Username -->
         <fieldset>
             <label for="username">Pseudonyme</label>
-            <input id="username" name="username" type="text" [formControl]="username" />
+            <input id="username" name="username" type="text" formControlName="username" />
         </fieldset>
 
-        <!-- Mail -->
-        <fieldset>
-            <label for="mail">Email</label>
-            <input id="mail" name="mail" type="text" [formControl]="mail" />
-        </fieldset>
+        <!-- Credentials -->
+        <form [formGroup]="credentials">
+            <p>Authentification</p>
 
-        <!-- Password -->
-        <fieldset>
-            <label for="password">Mot de passe</label>
-            <input id="password" name="password" type="text" [formControl]="password" />
-        </fieldset>
+            <!-- Mail -->
+            <fieldset>
+                <label for="mail">Email</label>
+                <input id="mail" name="mail" type="text" formControlName="mail" />
+            </fieldset>
 
+            <!-- Password -->
+            <fieldset>
+                <label for="password">Mot de passe</label>
+                <input id="password" name="password" type="text" formControlName="password" />
+            </fieldset>
+
+        </form>
+        
         <!-- Adress -->
         <form [formGroup]="adress">
             <p>Adresse</p>
@@ -51,14 +57,14 @@
     </form>
 
     <div *ngIf="newUser">
-        <p> Nouvel Utilisateur</p><br />
-        <p> Pseudonyme: {{newUser.username}}</p>
-        <p> Mail: {{newUser.mail}}</p>
-        <p> Mot de passe: {{newUser.password}}</p>
+        <p> <span>Nouvel Utilisateur</span> </p><br />
+        <p> <span>Pseudonyme: </span>{{newUser.username}}</p>
+        <p> <span>Mail: </span>{{newUser.credentials.mail}}</p>
+        <p> <span>Mot de passe: </span>{{newUser.credentials.password}}</p>
         <p>(juste pour la quête dans la vrai vie on n'affiche pas cette donnée)</p>
         <p>Adresse</p>
-        <p> Rue / Avenue/ Boulevard: {{newUser.adress.street}}</p>
-        <p> Code Postal: {{newUser.adress.postcode}}</p>
-        <p> Ville: {{newUser.adress.city}}</p>        
+        <p> <span>Rue / Avenue/ Boulevard: </span>{{newUser.adress.street}}</p>
+        <p> <span>Code Postal: </span>{{newUser.adress.postcode}}</p>
+        <p> <span>Ville: </span>{{newUser.adress.city}}</p>        
     </div>
 </div>
