@@ -19,6 +19,9 @@ import { ShowMovieDirective } from './show-movie.directive';
 import { SignUpReactiveComponent } from './sign-up-reactive/sign-up-reactive.component';
 import { SearchMovieComponent } from './search-movie/search-movie.component';
 import { CreateUserComponent } from './create-user/create-user.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import { CreateUserComponent } from './create-user/create-user.component';
     ShowMovieDirective,
     SignUpReactiveComponent,
     SearchMovieComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    HomePageComponent,
+    DashboardComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
