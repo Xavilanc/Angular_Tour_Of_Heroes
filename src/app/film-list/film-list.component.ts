@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Film } from '../models/film';
 
+import  * as XLSX from 'xlsx'
+
 @Component({
   selector: 'app-film-list',
   templateUrl: './film-list.component.html',
@@ -28,6 +30,18 @@ export class FilmListComponent implements OnInit {
   ];
 
   showMovies: boolean = true;
+
+  name = 'ExcelSheet.xlsx';
+
+  exportToExcel(): void {
+    let element = document.getElementById('movie_table');
+    const worksheet: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+    
+    const book: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(book, worksheet, 'Sheet1');
+
+    XLSX.writeFile(book, this.name);
+  }
 
   constructor() { }
 

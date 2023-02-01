@@ -1,4 +1,5 @@
 <button (click)="setShowMovies(showMovies)"> {{showMovies ? "Cacher les films" : "Voir les films"}}</button>
+<button (click)="exportToExcel()" > Exporter sous Excel</button>
 <div *appShowMovie="showMovies">
     <ul *ngFor="let f of films">
         <li appHighlight>
@@ -7,3 +8,13 @@
         </li>
     </ul>
 </div>
+<table id="movie_table">
+    <tr>
+        <th>Title</th>
+        <th>Image URL</th>
+    </tr>
+    <tr *ngFor="let f of films">
+        <td>{{f.title}}</td>
+        <td>{{f.imageUrl}}</td>
+    </tr>
+</table>
